@@ -9,6 +9,6 @@ namespace LibraryLists.Data
     {
     }
 
-    public DbSet<LibraryFullList> Library { get; set; }
+    public DbSet<Library> Library { get; set; }
     }
 }

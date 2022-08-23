@@ -1,4 +1,5 @@
-﻿using LibraryLists.Models;
+﻿using LibraryLists.Data;
+using LibraryLists.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,13 +14,9 @@ namespace LibraryLists.Controllers
             _logger = logger;
         }
 
+
         // IActionResult allows many return types rather than just a single return type.
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Library()
         {
             return View();
         }

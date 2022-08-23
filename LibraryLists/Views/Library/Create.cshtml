@@ -1,0 +1,32 @@
+﻿@model Library
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <div class=" border p-3 mt-2">
+        <div class="row pb-2">
+            <h2 class="">Create Book</h2>
+        </div>
+        <div class="p-1 mt-1">
+            <label asp-for="Title"></label>
+            <input class="form-control" asp-for="Title"/>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+           <div class="p-1 mt-1">
+            <label asp-for="Author"></label>
+            <input class="form-control" asp-for="Author"/>
+            <span asp-validation-for="Author" class="text-danger"></span>
+
+        </div>
+           <div class="p-1 mt-1">
+            <label asp-for="ISBN"></label>
+            <input class="form-control" asp-for="ISBN"/>
+            <span asp-validation-for= "ISBN"  class="text-danger"></span>
+
+        </div>
+        <button type="submit" class="btn btn-secondary m-1" style="width:150px">Create</button>
+        <a class="btn m-1 btn-outline-secondary ml-2 asp-controller="Library" asp-action="Index" style="width:150px">Go Back</a>
+    </div>
+</form>
