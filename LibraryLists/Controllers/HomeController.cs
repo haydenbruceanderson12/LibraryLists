@@ -13,15 +13,18 @@ namespace LibraryLists.Controllers
             _logger = logger;
         }
 
+        // IActionResult allows many return types rather than just a single return type.
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Library()
         {
             return View();
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
