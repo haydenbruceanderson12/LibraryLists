@@ -42,7 +42,7 @@ namespace LibraryLists.Controllers
         }
 
         //GET
-        // Dependency Injection allowing more than one return type.
+        // IActionResult allowing more than one return type.
         // NotFoundResult.
 
         public IActionResult Edit(int ? id)
