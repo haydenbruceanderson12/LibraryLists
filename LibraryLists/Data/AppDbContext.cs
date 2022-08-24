@@ -11,4 +11,5 @@ namespace LibraryLists.Data
 
     public DbSet<Library> Library { get; set; }
     }
+
 }

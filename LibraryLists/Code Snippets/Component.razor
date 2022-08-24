@@ -1,0 +1,74 @@
+﻿@code {
+
+
+
+
+
+
+    //Example of Dependancy Injection.
+
+    //Creating View for Not found - If Id doesn't exist.
+    public NotFoundResult Edit(int ? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+        }
+
+        //Creating view for Result found - If Id does exist.
+        public ViewResult EditC(int?id)
+        {
+            if (id == null || id == 0)
+            {
+                return null;
+            }
+            var categoryFromDb = _db.Library.Find(id);
+            return View(categoryFromDb);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        //POST
+        //ERRORS
+        //ADDITIONAL _db.Update(obj);
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Library obj)
+
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Remove(obj);
+                _db.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -26,6 +26,7 @@ namespace LibraryLists.Controllers
         }
 
         //POST
+        //MUST be explicidly defined.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Library obj)
@@ -41,23 +42,24 @@ namespace LibraryLists.Controllers
         }
 
         //GET
-        public IActionResult Edit(int? id)
+        // Dependency Injection allowing more than one return type.
+        // NotFoundResult.
+
+        public IActionResult Edit(int ? id)
         {
-            if (id == null || id==0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
             var categoryFromDb = _db.Library.Find(id);
-
-            if (categoryFromDb == null)
-            {
-                return NotFound();
-            }
             return View(categoryFromDb);
         }
+            
 
         //POST
         //ERRORS
+        //ADDITIONAL _db.Update(obj);
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Library obj)
@@ -89,7 +91,6 @@ namespace LibraryLists.Controllers
         }
 
         //POST
-        //ERRORS
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(Library obj)
@@ -105,5 +106,38 @@ namespace LibraryLists.Controllers
         }
 
 
+    
+
+    //GET
+    public IActionResult Add(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+        var categoryFromDb = _db.Library.Find(id);
+
+        if (categoryFromDb == null)
+        {
+            return NotFound();
+        }
+        return View(categoryFromDb);
     }
+
+     //POST
+     // Redirecting to The Favorites Controller.
+     // SqlException: Cannot insert explicit value for identity column in table 'Library' when IDENTITY_INSERT is set to OFF.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Add(Library obj)
+
+    {
+        if (ModelState.IsValid)
+        {
+            return RedirectToAction("Index", "Favorites");
+        }
+        return View(obj);
+    }
+
+}
 }
