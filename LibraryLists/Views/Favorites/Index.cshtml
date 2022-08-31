@@ -1,1 +1,66 @@
-﻿<h2>Favorites</h2>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Favorites>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<partial name="_Notification"/>
+
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="">Favorites</h2>
+        </div>
+    </div>
+    <br />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="col-1">
+                Book ID
+            </th>
+            <th class="col-3">
+                Title
+            </th>
+            <th class="col-3">
+                Author
+            </th>
+       
+            <th class="col-2">
+                ISBN
+            </th>
+           
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td class="m-1">
+                    @obj.Id
+                </td>
+                <td class="m-1">
+                    @obj.Title
+                </td>
+                 <td class="m-1">
+                    @obj.Author
+                </td>
+                <td class="m-1">
+                    @obj.ISBN
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</div>

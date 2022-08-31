@@ -21,20 +21,23 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>
+            <th class="col-1">
+                Book ID
+            </th>
+            <th class="col-3">
                 Title
             </th>
-            <th>
+            <th class="col-3">
                 Author
             </th>
        
-            <th>
+            <th class="col-2">
                 ISBN
             </th>
-            <th>
+            <th class="col-3">
                 Options
             </th>
-            <th>
+            <th class="col-1">
                 Favorite
             </th>
            
@@ -45,6 +48,9 @@
         @foreach(var obj in Model)
         {
             <tr>
+                <td class="m-1">
+                    @obj.Id
+                </td>
                 <td class="m-1">
                     @obj.Title
                 </td>

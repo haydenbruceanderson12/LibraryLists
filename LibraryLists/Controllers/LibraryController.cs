@@ -2,6 +2,7 @@
 using LibraryLists.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibraryLists.Controllers
 {
@@ -26,9 +27,8 @@ namespace LibraryLists.Controllers
         }
 
         //POST
-        //MUST be explicidly defined.
+        //Action MUST be explicidly defined.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(Library obj)
 
         {
@@ -41,6 +41,7 @@ namespace LibraryLists.Controllers
             }
             return View(obj);
         }
+
 
         //GET
         // IActionResult allowing more than one return type.
@@ -55,14 +56,11 @@ namespace LibraryLists.Controllers
             var categoryFromDb = _db.Library.Find(id);
             return View(categoryFromDb);
         }
-            
 
         //POST
-        //ERRORS
         //ADDITIONAL _db.Update(obj);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public IActionResult Edit(Library obj)
 
         {
@@ -70,7 +68,7 @@ namespace LibraryLists.Controllers
             {
                 _db.Update(obj);
                 _db.SaveChanges();
-                TempData["success"] = "Book Edited Successfully";
+                TempData["success"] = "Book Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -83,8 +81,8 @@ namespace LibraryLists.Controllers
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.Library.Find(id);
 
+            var categoryFromDb = _db.Library.Find(id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -112,14 +110,14 @@ namespace LibraryLists.Controllers
     
 
     //GET
-    public IActionResult Add(int? id)
+    public IActionResult Add(int ? id)
     {
         if (id == null || id == 0)
         {
             return NotFound();
         }
-        var categoryFromDb = _db.Library.Find(id);
 
+        var categoryFromDb = _db.Library.Find(id);
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -132,12 +130,14 @@ namespace LibraryLists.Controllers
      // SqlException: Cannot insert explicit value for identity column in table 'Library' when IDENTITY_INSERT is set to OFF.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Add(Library obj)
+    public IActionResult Add(Favorites obj)
 
     {
         if (ModelState.IsValid)
         {
-            return RedirectToAction("Index", "Favorites");
+                _db.Favorites.Add(obj);
+               TempData["success"] = "Book Added to Favorites";
+              return RedirectToAction("Index", "Favorites");
         }
         return View(obj);
     }
