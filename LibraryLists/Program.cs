@@ -1,7 +1,5 @@
 using LibraryLists.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using LibraryLists.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +26,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
